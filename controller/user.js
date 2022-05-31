@@ -9,7 +9,8 @@ exports.signup = function (req, res) {
     if (user) return res.json({ user: "exists" });
     const newUser = new userModel(req.body);
     newUser.save((err, user) => {
-      res.json({ user: user });
+      if (err) return res.json(err);
+      return res.json(user);
     });
   });
 };

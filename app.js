@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const user = require("./routes/user");
 const session = require("./routes/session");
 const post = require("./routes/post");
+
 const { err, router: userById } = require("./controller/auth");
 const app = express();
 

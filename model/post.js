@@ -1,14 +1,21 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema({
-  caption: {
+  title: {
     type: String,
-    required: false,
-  },
-  post: {
     required: true,
-    type: String,
+    minLength: 4,
+    maxLength: 120,
+  },
+  body: {
+    content: {
+      type: String,
+      required: true,
+    },
+    caption: {
+      type: String,
+    },
   },
 });
 
-const model = new mongoose.model("student", schema, "StudentDB");
-module.exports = { model };
+const model = new mongoose.model("post", schema, "PostDB");
+module.exports = model;
