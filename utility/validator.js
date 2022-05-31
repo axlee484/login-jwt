@@ -5,7 +5,7 @@ exports.validateUser = [
   body("password").isLength({ min: 8 }),
   (req, res, next) => {
     const error = validationResult(req);
-    if (error) return res.send(error);
+    if (!error.isEmpty()) return res.send(error.array());
     next();
   },
 ];
