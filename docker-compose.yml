@@ -1,0 +1,29 @@
+version: '3.9'
+
+volumes:
+  mongo_db_volume: {}
+
+services:
+  image-poster:
+    build: .
+    ports:
+      - 0708:2403
+    volumes:
+      - .:/usr/src/app
+    environment:
+      PORT: 2403
+      MONGO_URI: mongodb://127.0.0.1:27017/Books
+      JWT_TOKEN: rrt353c23i32320323b37sbqv3qqv
+    depends_on:
+      - mongo_db
+
+  mongo_db:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db_volume:/data/db
+    ports:
+      - 2717:27017
+
+    
+
