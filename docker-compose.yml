@@ -12,7 +12,7 @@ services:
       - .:/usr/src/app
     environment:
       PORT: 2403
-      MONGO_URI: mongodb://127.0.0.1:27017/Books
+      MONGO_URI: mongodb://mongo_db:27017/Books
       JWT_TOKEN: rrt353c23i32320323b37sbqv3qqv
     depends_on:
       - mongo_db
