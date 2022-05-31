@@ -15,9 +15,25 @@ exports.signup = function (req, res) {
   });
 };
 
-exports.userById = function (req, res, next, username) {
-  userModel.findById(username).exec((err, user) => {
-    if (err || !user) return res.status(400);
+exports.getProfile = function (req, res) {
+  return res.send(req.profile);
+};
+
+exports.getAll = function (req, res) {
+  userModel.find({}, function (err, user) {
+    if (err) return res.json(err);
+    const all = user.map((val) => {
+      const { email, username } = val;
+      return { email, username };
+    });
+    return res.json(all);
+  });
+};
+exports.userById = function (req, res, next, id) {
+  userModel.findOne({ username: id }, (err, user) => {
+    if (err) return res.json({ err: err });
+    if (!user) return res.redirect("/");
+
     req.profile = user;
     next();
   });

@@ -1,7 +1,6 @@
 require("dotenv").config();
-const router = require("express").Router();
 const { expressjwt: jwt } = require("express-jwt");
-const { userById } = require("../controller/user");
+
 const auth = jwt({
   secret: process.env.JWT_TOKEN,
   algorithms: ["HS256"],
@@ -20,5 +19,4 @@ const hasAuth = function (req, res, next) {
   }
 };
 
-router.param("username", userById);
-module.exports = { auth, err, router, hasAuth };
+module.exports = { auth, err, hasAuth };

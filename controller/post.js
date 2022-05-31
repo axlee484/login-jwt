@@ -1,4 +1,5 @@
 const postModel = require("../model/post");
+
 exports.createPost = function (req, res, next) {
   const post = new postModel(req.body);
   post.save((err, post) => {
@@ -8,5 +9,8 @@ exports.createPost = function (req, res, next) {
 };
 
 exports.getPost = function (req, res, next) {
-  res.json("req.body");
+  postModel.find({}, function (err, post) {
+    if (err) return res.json({ err });
+    return res.json(post);
+  });
 };
