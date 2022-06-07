@@ -9,12 +9,18 @@ exports.createPost = function (req, res, next) {
 };
 
 exports.getPost = function (req, res, next) {
-  postModel.findOne({ "body.content": "redyuyuyuyuy" }, (err, post) => {
+  // postModel.findOne({ "body.content": "redyuyuyuyuy" }, (err, post) => {
+  //   if (err) return res.json({ err });
+  //   if (!post) return res.json({ err: "no post" });
+  //   const {
+  //     body: { caption, content },
+  //   } = post;
+  //   res.json({ body: { caption, content } });
+  // });
+  postModel.find({}, (err, post) => {
     if (err) return res.json({ err });
     if (!post) return res.json({ err: "no post" });
-    const {
-      body: { caption, content },
-    } = post;
-    res.json({ body: { caption, content } });
+
+    res.json(post);
   });
 };
