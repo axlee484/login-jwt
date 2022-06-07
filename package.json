@@ -29,5 +29,6 @@
     "url": "https://github.com/axlee484/login-jwt/issues"
   },
   "homepage": "https://github.com/axlee484/login-jwt#readme",
+  "devDependencies": {},
   "description": ""
 }
