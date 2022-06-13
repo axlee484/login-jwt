@@ -1,10 +1,13 @@
 const postModel = require("../model/post");
-
+const formidable = require("formidable");
+const fs = require("fs");
 exports.createPost = function (req, res, next) {
   const post = new postModel(req.body);
+  post.postedBy = req.profile;
+
   post.save((err, post) => {
     if (err) return res.json({ err });
-    return res.json({ created: post });
+    return res.json({ created: post, id: req.profile });
   });
 };
 

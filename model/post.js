@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 const schema = mongoose.Schema({
   title: {
     type: String,
@@ -7,7 +8,7 @@ const schema = mongoose.Schema({
     maxLength: 120,
   },
   body: {
-    content: {
+    photo: {
       type: String,
       required: true,
     },
@@ -15,6 +16,15 @@ const schema = mongoose.Schema({
     caption: {
       type: String,
     },
+  },
+
+  postedBy: {
+    type: ObjectId,
+    ref: "UserDB",
+  },
+  created: {
+    type: Date,
+    default: Date.now,
   },
 });
 
