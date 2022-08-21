@@ -18,6 +18,6 @@ exports.validateUser = [
 
 exports.validatePost = [
   check("title").isLength({ min: 4, max: 120 }),
-  check("body.content").isLength({ min: 4, max: 120 }),
+  check("body.caption").isLength({ min: 4, max: 120 }),
   result,
 ];

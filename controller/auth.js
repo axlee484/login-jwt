@@ -1,5 +1,8 @@
 require("dotenv").config();
 const { expressjwt: jwt } = require("express-jwt");
+const isAuthorized = function (req, res) {
+  return req.auth && req.profile && req.auth.id === req.profile.username;
+};
 
 const auth = jwt({
   secret: process.env.JWT_TOKEN,
@@ -13,10 +16,9 @@ const err = function (err, req, res, next) {
 };
 
 const hasAuth = function (req, res, next) {
-  const authorized = req.profile && req.auth && req.auth.id == req.profile.id;
-  if (!authorized) {
+  if (!isAuthorized(req, res, next)) {
     res.send(403);
-  }
+  } else next();
 };
 
-module.exports = { auth, err, hasAuth };
+module.exports = { auth, err, hasAuth, isAuthorized };
